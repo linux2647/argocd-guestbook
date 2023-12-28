@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: guestbook-ui
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  type: LoadBalancer
+  selector:
+    app: guestbook-ui
